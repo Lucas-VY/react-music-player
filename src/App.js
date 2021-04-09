@@ -1,21 +1,18 @@
 import { useState, useRef} from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import PlayList from './Components/PlayList'
 
 function App() {
 
-  const [state] = useState(
-    [
-      { "id": 1, "category": "game", "name": "Mario Castle", "url": "files/mario/songs/castle.mp3" },
-      { "id": 2, "category": "game", "name": "Mario Star", "url": "files/mario/songs/hurry-starman.mp3" },
-      { "id": 3, "category": "game", "name": "Mario Overworld", "url": "files/mario/songs/overworld.mp3" }
-    ])
+  const [state] = useState( PlayList )
+
   const [songsActive, setsongsActive] = useState(null); 
   let nombreRef = useRef(null); 
   
 
-  const setSingleSong = (x, i) => {
-    nombreRef.src = `https://assets.breatheco.de/apis/sound/${x}`;
+  const setSingleSong = (linkName, i) => {
+    nombreRef.src = `https://assets.breatheco.de/apis/sound/${linkName}`;
     setsongsActive(i) 
   }
   const playsong = () => {
@@ -40,7 +37,7 @@ function App() {
 
      <div className="container mt-4 py-5" >
       <div className="row">
-        <div className="col-md-6 mx-auto p-auto text-align">
+        <div className="col-md-6 mx-auto  text-align">
           <div className="list-group text-align">
             {
               state.length > 0 && state.map((value, j) => {
